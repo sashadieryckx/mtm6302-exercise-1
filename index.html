@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 1</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS RESET START */
+        /* http://meyerweb.com/eric/tools/css/reset/ 
+        v2.0 | 20110126
+        License: none (public domain)*/
+        html, body, div, span, applet, object, iframe,
+        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+        a, abbr, acronym, address, big, cite, code,
+        del, dfn, em, img, ins, kbd, q, s, samp,
+        small, strike, strong, sub, sup, tt, var,
+        b, u, i, center,
+        dl, dt, dd, ol, ul, li,
+        fieldset, form, label, legend,
+        table, caption, tbody, tfoot, thead, tr, th, td,
+        article, aside, canvas, details, embed, 
+        figure, figcaption, footer, header, hgroup, 
+        menu, nav, output, ruby, section, summary,
+        time, mark, audio, video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline;
+        }
+        /* HTML5 display-role reset for older browsers */
+        article, aside, details, figcaption, figure, 
+        footer, header, hgroup, menu, nav, section {
+            display: block;
+        }
+        body {
+            line-height: 1;
+        }
+        ol, ul {
+            list-style: none;
+        }
+        blockquote, q {
+            quotes: none;
+        }
+        blockquote:before, blockquote:after,
+        q:before, q:after {
+            content: '';
+            content: none;
+        }
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        /* CSS RESET END */
+
+        /* 
+        COLOR PALETTE & FONT
+        Dark Grey: 39393A
+        WHite: ECECEA
+        Accent 1: AC9579
+
+        font-family: 'Raleway', sans-serif;
+        */
+
+
+        /* MAIN CONTENT */
+        .container{
+            display: block;
+            text-align: center;
+            background-color: #AC9579;
+        }
+        h1{
+            font-family: 'Raleway', sans-serif;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        h2{
+            font-family: 'Raleway', sans-serif;
+            font-size: .7rem;
+            padding-top: 1em;
+            line-height: 1.25em;
+        }
+        h3{
+            text-align: center;
+            font-family: 'Raleway', sans-serif;
+            font-size: 1rem;
+            padding-top: 1em;
+            padding-bottom: .5em;
+        }
+        h4{
+            text-align: center;
+            font-family: 'Raleway', sans-serif;
+            font-size: .8rem;
+        }
+        .text{
+            display: block;
+            text-align: center;
+            padding-left: 5em;
+            padding-right: 5em;
+            padding-top: 10em;
+            padding-bottom: 10em;
+        }
+        .left{
+            background-color: #ECECEA;
+        }
+        .emoji-bin{
+            padding: 3em;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+        }
+        .emoji-bin p{
+            font-size: 2rem;
+            line-height: 2em;
+        }
+        footer{
+            padding-bottom: 1.5em;
+        }
+        /* SCREEN ADJUSTMENTS */
+        @media screen and (min-width: 450px){
+            h1{
+                font-size: 2.5rem;
+            }
+            h2{
+                font-size: 1rem;
+            }
+            .text{
+                padding-top: 15em;
+                padding-bottom: 15em;
+            }
+        }
+        @media screen and (min-width: 650px){
+            h1{
+                font-size: 2rem;
+            }
+            .container{
+                display: flex;
+            }
+            .left,
+            .right{
+                flex-basis: 50%;
+            }
+            .text{
+                padding-top: 20em;
+                padding-bottom: 20em;
+            }
+
+        }
+        @media screen and (min-width: 1000px){
+            h1{
+                font-size: 2.5rem;
+            }
+            h2{
+                font-size: 1.5rem;
+            }
+        }
+        @media screen and (min-width: 1350px){
+            .emoji-bin{
+                padding: 8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="left" class="left">
+            <div id="text" class="text">
+                <h1 id="title"></h1>
+                <h2 id="subt"></h2>
+            </div>
+        </div>
+        <div class="right">
+            <div>
+                <p id="emoji"></p>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <h3>Sasha Dieryckx 2020</h3>
+        <h4>IMD - 020 MTM6302 - Introduction to Javascript</h4>
+    </footer>
+    <script>
+        // TITLE -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        document.getElementById('title').textContent = 'EXERCISE ONE';
+        document.getElementById('subt').textContent = 'The following is an emoji grid, refresh the page to regenerate the emojis!';
+
+        // EMOJI BANK WITH RANDOM GENERATOR FUNCTION -------------------------------------------------------------------------------------------------------------------------------------------------------
+        let emojiBank = ['&#129409;', '&#127758;', '&#128128;', '&#128169;', '&#128189;', '&#128148;', '&#127928;', '&#128527;', '&#128536;', '&#128539;', '&#128540;', '&#128542;', '&#128545', '&#128548;',
+        '&#128558;', '&#128564;', '&#128568;', '&#128579;', '&#128520;', '&#128507;', '&#128420;', '&#128299;', '&#128293;', '&#128267;', '&#128274;', ]
+
+        function emojiGen(emojiBank) {
+        return emojiBank[Math.floor(Math.random()*emojiBank.length)];
+        }       
+
+        // TEMPLATE LITERAL (Containing all html elements to be added) -------------------------------------------------------------------------------------------------------------------------------------
+        const additionalHtml = `
+        <div class="emoji-bin">  
+            <div>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+            </div>
+            <div>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+            </div>
+            <div>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+            </div>
+            <div>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+            </div>
+            <div>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+                <p>${emojiGen(emojiBank)}</p>
+            </div>
+        </div>
+        `
+const $additionalHtml = document.getElementById('emoji')
+
+$additionalHtml.innerHTML = additionalHtml
+
+    </script>
+</body>
+</html>
